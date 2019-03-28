@@ -8,8 +8,8 @@
 //#define DHTTYPE DHT22   // DHT 22  (AM2302), AM2321
 
 /*Put your SSID & Password*/
-const char* ssid = "ssid_ap";  // Enter SSID here
-const char* password = "pass";  //Enter Password here
+const char* ssid = "AP-ssid";  // Enter SSID here
+const char* password = "passwd";  //Enter Password here
 
 ESP8266WebServer server(80);
 
@@ -39,7 +39,7 @@ void setup() {
   //check wi-fi is connected to wi-fi network
   while (WiFi.status() != WL_CONNECTED) {
   delay(1000);
-  Serial.print(".");
+  Serial.println("Connecting Wifi...");
   }
   Serial.println("");
   Serial.println("WiFi connected..!");
@@ -72,6 +72,7 @@ void handle_NotFound(){
 String SendHTML(float TempCstat,float Humiditystat){
  String ptr = "<!DOCTYPE html> <html>\n";
   ptr +="<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\">\n";
+  ptr +="<meta http-equiv=\"refresh\" content=\"3\">\n";
   ptr +="<link href=\"https://fonts.googleapis.com/css?family=Open+Sans:300,400,600\" rel=\"stylesheet\">\n";
   ptr +="<title>ESP8266 Weather Report</title>\n";
   ptr +="<style>html { font-family: 'Open Sans', sans-serif; display: block; margin: 0px auto; text-align: center;color: #333333;}\n";
@@ -107,7 +108,7 @@ String SendHTML(float TempCstat,float Humiditystat){
    ptr +="<div class=\"side-by-side temperature-text\">Temperature</div>\n";
    ptr +="<div class=\"side-by-side temperature\">";
    ptr +=(int)TempCstat;
-   ptr +="<span class=\"superscript\">°C</span></div>\n";
+   ptr +="<span class=\"superscript\">Cº</span></div>\n";
    ptr +="</div>\n";
    ptr +="<div class=\"data\">\n";
    ptr +="<div class=\"side-by-side humidity-icon\">\n";
